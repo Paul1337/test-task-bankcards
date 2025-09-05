@@ -1,9 +1,75 @@
-# 
+#
 # docker-compose.yml — определяет сервисы для разработки и тестирования.
 
-Что нужно сделать:
-  - Настроить сервисы для:
-      - PostgreSQL (или MySQL) с начальной базой.
-      - Приложения Spring Boot (если нужно).
-  - Открыть нужные порты (например, 5432, 8080).
-  - Настроить volume для хранения данных БД.
+#Что нужно сделать:
+#  - Настроить сервисы для:
+#      - PostgreSQL (или MySQL) с начальной базой.
+#      - Приложения Spring Boot (если нужно).
+#  - Открыть нужные порты (например, 5432, 8080).
+#  - Настроить volume для хранения данных БД.
+
+version: '3.8'
+name: bank-system
+
+services:
+  postgres:
+    image: postgres:alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-app_db}']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - '5432:5432'
+    networks:
+      - server-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - '${PGADMIN_PORT}:80'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - server-net
+
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DB_URL: jdbc:postgresql://postgres:${DB_PORT}/${DB_NAME}
+    volumes:
+      - .:/app:rw
+      #      - ./src:/app/src:rw
+      #      - ./target:/app/target:rw
+      - ./pom.xml:/app/pom.xml:rw
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    networks:
+      - server-net
+
+volumes:
+  postgres_data:
+
+networks:
+  server-net:
+    driver: bridge
