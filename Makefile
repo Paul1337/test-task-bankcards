@@ -13,7 +13,7 @@ dev-up-container:
 	echo "App is started"
 	docker ps
 
-dev-down:
+dev-down-container:
 	docker-compose stop app
 	echo "App stopped"
 	docker ps
