@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-app_db}']
       interval: 5s
@@ -68,7 +68,7 @@ services:
       - server-net
 
 volumes:
-  postgres_data:
+  db_data:
 
 networks:
   server-net:

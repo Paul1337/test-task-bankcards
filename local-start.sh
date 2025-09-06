@@ -7,4 +7,4 @@ else
     exit 1
 fi
 
-mvn spring-boot:run
+./mvnw spring-boot:run

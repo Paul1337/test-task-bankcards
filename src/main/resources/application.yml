@@ -20,17 +20,11 @@ spring:
       ddl-auto: validate
 
   liquibase:
-    enabled: false
-#    change-log: classpath:db/migration/changelog-master.yml
-#    referenceUrl: hibernate:spring:com.example.bankcards.entity?dialect=org.hibernate.dialect.PostgreSQLDialect
-#    url: ${spring.datasource.url}
-#    user: ${spring.datasource.username}
-#    password: ${spring.datasource.password}
-
+    enabled: true
+    change-log: classpath:db/migration/changelog-master.yml
 
 springdoc:
   api-docs:
     path: '/api-doc'
   swagger-ui:
     path: '/swagger-ui'
-

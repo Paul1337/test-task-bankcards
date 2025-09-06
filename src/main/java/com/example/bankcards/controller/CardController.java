@@ -16,15 +16,15 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @PostMapping("/")
+    @PostMapping({ "", "/" })
     public void createCard(@RequestBody CreateCard.Request dto) {
         cardService.createCard(dto);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test40";
-    }
+    // @GetMapping("/test")
+    // public String test() {
+    //     return "test40";
+    // }
 
     @GetMapping("/all")
     public ResponseEntity<List<GetCard.ShallowResponse>> getAllCards() {

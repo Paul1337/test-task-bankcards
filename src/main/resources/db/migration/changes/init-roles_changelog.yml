@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed_initial_roles
+      author: pavel
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO role (value) VALUES 
+              ('ADMIN'),
+              ('USER')
+            endDelimiter: ;

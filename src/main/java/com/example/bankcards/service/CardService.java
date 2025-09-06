@@ -19,7 +19,11 @@ public class CardService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CardNumberValidator cardNumberValidator;
+
     public void createCard(CreateCard.Request dto) {
+        cardNumberValidator.validateCardNumber(dto.number());
         if (cardRepository.existsById(dto.number())) throw new RuntimeException(String.format("Card with number %s already exists", dto.number()));
         User owner = userRepository.findById(dto.ownerId()).orElseThrow(() -> new RuntimeException("Owner does not exist"));
         LocalDateTime expirationDateTime = LocalDateTime.now().plus(Duration.ofDays(dto.activeDaysCount()));

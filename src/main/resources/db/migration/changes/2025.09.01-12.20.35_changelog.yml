@@ -1,87 +1,86 @@
 databaseChangeLog:
-- changeSet:
-    id: 1756729238473-1
-    author: pavel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: cardPK
-            name: number
-            type: VARCHAR(16)
-        - column:
-            name: balance
-            type: numeric(38, 2)
-        - column:
-            name: expiration_date
-            type: TIMESTAMP(6) WITHOUT TIME ZONE
-        - column:
-            name: is_blocked
-            type: BOOLEAN
-        - column:
-            constraints:
-              nullable: false
-            name: owner_id
-            type: UUID
-        tableName: card
-- changeSet:
-    id: 1756729238473-2
-    author: pavel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: rolePK
-            name: value
-            type: VARCHAR(128)
-        tableName: role
-- changeSet:
-    id: 1756729238473-3
-    author: pavel (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: userPK
-            name: id
-            type: UUID
-        - column:
-            name: role_id
-            type: VARCHAR(128)
-        tableName: user
-- changeSet:
-    id: 1756729238473-4
-    author: pavel (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: owner_id
-        baseTableName: card
-        constraintName: FK8pspfj8x9rbqn67t0l8ir7im3
-        deferrable: false
-        initiallyDeferred: false
-        referencedColumnNames: id
-        referencedTableName: user
-        validate: true
-- changeSet:
-    id: 1756729238473-5
-    author: pavel (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: role_id
-        baseTableName: user
-        constraintName: FKn82ha3ccdebhokx3a8fgdqeyy
-        deferrable: false
-        initiallyDeferred: false
-        referencedColumnNames: value
-        referencedTableName: role
-        validate: true
-
+  - changeSet:
+      id: 1756729238473-1
+      author: pavel (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: cardPK
+                  name: number
+                  type: VARCHAR(16)
+              - column:
+                  name: balance
+                  type: numeric(38, 2)
+              - column:
+                  name: expiration_date
+                  type: TIMESTAMP(6) WITHOUT TIME ZONE
+              - column:
+                  name: is_blocked
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: owner_id
+                  type: UUID
+            tableName: card
+  - changeSet:
+      id: 1756729238473-2
+      author: pavel (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: rolePK
+                  name: value
+                  type: VARCHAR(128)
+            tableName: role
+  - changeSet:
+      id: 1756729238473-3
+      author: pavel (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: userPK
+                  name: id
+                  type: UUID
+              - column:
+                  name: role_id
+                  type: VARCHAR(128)
+            tableName: user
+  - changeSet:
+      id: 1756729238473-4
+      author: pavel (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner_id
+            baseTableName: card
+            constraintName: FK8pspfj8x9rbqn67t0l8ir7im3
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: user
+            validate: true
+  - changeSet:
+      id: 1756729238473-5
+      author: pavel (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: user
+            constraintName: FKn82ha3ccdebhokx3a8fgdqeyy
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: value
+            referencedTableName: role
+            validate: true

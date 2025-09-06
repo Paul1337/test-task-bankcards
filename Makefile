@@ -1,3 +1,5 @@
+# make file for unix like systems (or use wsl)
+
 dev-prepare:
 	docker compose up -d --build postgres pgadmin
 	echo "Prepared needed services (db, db admin)"
@@ -23,7 +25,7 @@ dev-down-all:
 	echo "All services stopped"
 
 migrate-diff:
-	docker compose up -d postgres
-	mvn liquibase:diff
-	docker compose down
+	./mvnw compile liquibase:diff
 
+migrate-update:
+	./mvnw liquibase:update
