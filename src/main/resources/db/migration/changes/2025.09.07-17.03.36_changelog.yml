@@ -1,0 +1,68 @@
+databaseChangeLog:
+- changeSet:
+    id: 1757264619636-4
+    author: pavel (generated)
+    changes:
+    - dropForeignKeyConstraint:
+        baseTableName: card
+        constraintName: FK8pspfj8x9rbqn67t0l8ir7im3
+- changeSet:
+    id: 1757264619636-5
+    author: pavel (generated)
+    changes:
+    - dropForeignKeyConstraint:
+        baseTableName: user
+        constraintName: FKl5alypubd40lwejc45vl35wjb
+- changeSet:
+    id: 1757264619636-1
+    author: pavel (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: usersPK
+            name: id
+            type: UUID
+        - column:
+            name: name
+            type: VARCHAR(128)
+        - column:
+            name: role
+            type: VARCHAR(128)
+        tableName: users
+- changeSet:
+    id: 1757264619636-2
+    author: pavel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role
+        baseTableName: users
+        constraintName: FK20wcxq3dnh6io9qug4vc90p0p
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: value
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1757264619636-3
+    author: pavel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: owner_id
+        baseTableName: card
+        constraintName: FKj6rquh2v5pm34307513oi2hsx
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1757264619636-6
+    author: pavel (generated)
+    changes:
+    - dropTable:
+        tableName: user
+

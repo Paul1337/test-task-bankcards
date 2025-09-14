@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-foreign-key-for-card-set-default
+      author: pavel
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: card
+            constraintName: FKj6rquh2v5pm34307513oi2hsx
+
+        - addForeignKeyConstraint:
+            baseTableName: card
+            baseColumnNames: owner_id
+            constraintName: fk_card_owner_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: SET DEFAULT

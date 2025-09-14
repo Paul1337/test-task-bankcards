@@ -1,0 +1,39 @@
+databaseChangeLog:
+- changeSet:
+    id: 1757262556757-3
+    author: pavel (generated)
+    changes:
+    - dropForeignKeyConstraint:
+        baseTableName: user
+        constraintName: FKn82ha3ccdebhokx3a8fgdqeyy
+- changeSet:
+    id: 1757262556757-1
+    author: pavel (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: role
+            type: varchar(128)
+        tableName: user
+- changeSet:
+    id: 1757262556757-2
+    author: pavel (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role
+        baseTableName: user
+        constraintName: FKl5alypubd40lwejc45vl35wjb
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: value
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1757262556757-4
+    author: pavel (generated)
+    changes:
+    - dropColumn:
+        columnName: role_id
+        tableName: user
+

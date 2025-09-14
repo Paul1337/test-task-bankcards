@@ -1,0 +1,20 @@
+databaseChangeLog:
+- changeSet:
+    id: 1757671192409-1
+    author: pavel (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: password
+            type: varchar(4096)
+        tableName: users
+- changeSet:
+    id: 1757671192409-2
+    author: pavel (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: username
+        constraintName: UC_USERSUSERNAME_COL
+        tableName: users
+

@@ -1,0 +1,13 @@
+databaseChangeLog:
+- changeSet:
+    comment: 'Added name column for user'
+    id: 1757262360203-1
+    author: pavel (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: name
+            type: varchar(128)
+        tableName: user
+

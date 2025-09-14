@@ -1,0 +1,12 @@
+databaseChangeLog:
+- changeSet:
+    id: 1757341518817-1
+    author: pavel (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: username
+            type: varchar(128)
+        tableName: users
+

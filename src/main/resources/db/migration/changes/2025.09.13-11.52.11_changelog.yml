@@ -1,0 +1,10 @@
+databaseChangeLog:
+- changeSet:
+    id: 1757764336017-1
+    author: pavel (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: uuid
+        columnName: owner_id
+        tableName: card
+

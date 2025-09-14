@@ -23,6 +23,12 @@ spring:
     enabled: true
     change-log: classpath:db/migration/changelog-master.yml
 
+  security:
+
+jwt:
+  secret: ${JWT_KEY}
+  expiration: ${JWT_EXPIRATION}
+
 springdoc:
   api-docs:
     path: '/api-doc'

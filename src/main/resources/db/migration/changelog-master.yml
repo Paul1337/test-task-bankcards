@@ -3,3 +3,17 @@ databaseChangeLog:
       file: db/migration/changes/2025.09.01-12.20.35_changelog.yml
   - include:
       file: db/migration/changes/init-roles_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.07-16.25.55_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.07-16.29.13_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.07-17.03.36_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.08-14.25.15_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.12-09.59.47_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.13-11.52.11_changelog.yml
+  - include:
+      file: db/migration/changes/2025.09.13-11.55.00_changelog.yml
