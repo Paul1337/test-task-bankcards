@@ -22,7 +22,6 @@ import java.util.UUID;
 
 @Service
 public class CardService {
-//    private static int PageSize = 20;
     @Autowired
     private CardRepository cardRepository;
     @Autowired
@@ -64,8 +63,5 @@ public class CardService {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
         return cardRepository.findByOwnerIdAndNumberStartingWith(user.getId(), search, pageable);
     }
-
-
-
 
 }

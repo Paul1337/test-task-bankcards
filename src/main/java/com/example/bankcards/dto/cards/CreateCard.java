@@ -4,11 +4,13 @@ import com.example.bankcards.util.validators.card.ValidCardNumber;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 public class CreateCard {
     public static int DefaultActiveDaysCount = 365 * 3;
 
     @Data
+    @NoArgsConstructor
     public static class Request {
         @NotBlank(message = "Card number should be provided")
         @ValidCardNumber

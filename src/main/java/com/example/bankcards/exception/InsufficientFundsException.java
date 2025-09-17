@@ -1,11 +1,13 @@
 package com.example.bankcards.exception;
 
-public class InsufficientFundsException extends RuntimeException {
-    public InsufficientFundsException() {
-        super("Not enough funds");
-    }
+import lombok.Getter;
 
-    public InsufficientFundsException(String message) {
-        super("Not enough funds on card %s".formatted(message));
+public class InsufficientFundsException extends RuntimeException {
+    @Getter
+    private String cardNumber;
+
+    public InsufficientFundsException(String cardNumber) {
+        super("Not enough funds on card %s".formatted(cardNumber));
+        this.cardNumber = cardNumber;
     }
 }

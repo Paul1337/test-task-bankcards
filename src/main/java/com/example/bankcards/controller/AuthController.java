@@ -3,9 +3,11 @@ package com.example.bankcards.controller;
 import com.example.bankcards.dto.auth.Login;
 import com.example.bankcards.dto.auth.Register;
 import com.example.bankcards.dto.auth.UserInfo;
+import com.example.bankcards.entity.User;
 import com.example.bankcards.security.JwtTokenProvider;
 import com.example.bankcards.security.annotations.RoleUser;
 import com.example.bankcards.service.RegisterService;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +51,6 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
 
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String jwt = jwtTokenProvider.generateToken(authentication);
         String roleResponse = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList().getFirst();
@@ -59,7 +59,6 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<UserInfo> getCurrentUser(Authentication authentication) {
         String username = authentication.getName();
         String role = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).findFirst().orElse("ROLE_UNKNOWN");

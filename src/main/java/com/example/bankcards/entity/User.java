@@ -14,34 +14,29 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Getter
     private UUID id;
 
     @Column(length = 128)
-    @Getter
     private String name;
 
     @Column(length = 128, unique = true)
-    @Getter
     private String username;
 
     @Column(length = 4096)
-    @Getter
     private String password;
 
     @OneToMany(mappedBy = "owner")
-    @Getter
     private List<Card> cards;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role")
-    @Getter
     @Setter
     private Role role;
 

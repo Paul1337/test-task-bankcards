@@ -6,7 +6,7 @@ public class GetCardList {
     @Data
     public static class Request {
         private int page;
-        private int size;
+        private int size = 10;
         private String search = "";
     }
 }

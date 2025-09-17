@@ -14,6 +14,6 @@ public class RolesService {
     private RolesRepository rolesRepository;
 
     public Role findRole(String value) {
-        return rolesRepository.findById(value).orElseThrow();
+        return rolesRepository.findById(value).orElse(new Role("ROLE_UNKNOWN"));
     }
 }

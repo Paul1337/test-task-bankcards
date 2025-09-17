@@ -12,12 +12,6 @@ import java.util.UUID;
 @Service("cardAccessService")
 public class CardAccessService {
     @Autowired
-    private CardRepository cardRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     public boolean userOwnsCard(String cardNum) {
