@@ -8,6 +8,7 @@ import com.example.bankcards.security.JwtTokenProvider;
 import com.example.bankcards.security.annotations.RoleUser;
 import com.example.bankcards.service.RegisterService;
 import jakarta.annotation.security.PermitAll;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,13 +41,13 @@ public class AuthController {
     private RegisterService registerService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody Register.Request registerRequest) {
+    public ResponseEntity<Void> register(@RequestBody @Valid Register.Request registerRequest) {
         registerService.register(registerRequest);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Login.Response> login(@RequestBody Login.Request loginRequest) {
+    public ResponseEntity<Login.Response> login(@RequestBody @Valid Login.Request loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );

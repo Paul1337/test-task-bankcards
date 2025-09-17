@@ -5,6 +5,7 @@ import com.example.bankcards.entity.User;
 import com.example.bankcards.security.annotations.RoleAdmin;
 import com.example.bankcards.service.RolesService;
 import com.example.bankcards.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserController {
 
     @PostMapping("/{username}/changeRole")
     @RoleAdmin
-    public ResponseEntity<Void> changeRole(@PathVariable String username, @RequestBody ChangeRole.Request dto) {
+    public ResponseEntity<Void> changeRole(@PathVariable String username, @RequestBody @Valid ChangeRole.Request dto) {
         userService.updateUserRole(username, dto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

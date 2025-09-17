@@ -2,6 +2,7 @@ package com.example.bankcards.controller;
 
 import com.example.bankcards.dto.cards.Transfer;
 import com.example.bankcards.service.TransferService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class TransferController {
 
     @PostMapping({ "", "/" })
     @PreAuthorize("@cardAccessService.userOwnsCard(#dto.cardFrom) and @cardAccessService.userOwnsCard(#dto.cardTo)")
-    public ResponseEntity<Void> transfer(@RequestBody Transfer.Request dto) {
+    public ResponseEntity<Void> transfer(@RequestBody @Valid Transfer.Request dto) {
         transferService.transferCash(dto.getCardFrom(), dto.getCardTo(), dto.getAmount());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
